@@ -166,6 +166,7 @@ int main(int argc, char *argv[]) {
 
     }*/
 
+    std::cout << "Benchmarking assigning color to each region" << std::endl;
     imageManager testImg = imageManager(image_path,testim);
     testImg.init();
 
@@ -173,7 +174,7 @@ int main(int argc, char *argv[]) {
     name.append(std::to_string(25));
     std::vector<int> values_img;
     algorithms::get_tab_from_image(name,values_img);
-    testImg.addMarkers(values_img.data(),values_img.size(),false);
+    testImg.addMarkers(values_img.data(),values_img.size());
     name.append("_add.png");
     cv::Mat markerMask = cv::imread(name, CV_8UC1);
 
@@ -209,8 +210,9 @@ int main(int argc, char *argv[]) {
         }
         t = (double) cv::getTickCount() - t;
 
-        printf("execution time for color tab = %gms\n", t * 1000. / cv::getTickFrequency());
+        printf("execution time for assigning color to segment = %g ms\n", t * 1000. / cv::getTickFrequency());
     }
+
 
     //NIWS
     /*testim = cv::imread(image_path,cv::IMREAD_GRAYSCALE);
